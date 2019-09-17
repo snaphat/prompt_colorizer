@@ -21,7 +21,6 @@ Copyright (c) 2011-2019 Aaron Myles Landwehr
     * fish
 
 ## Installation
--
 
 ### Clone:
 ```
