@@ -2,8 +2,11 @@
 
 Copyright (c) 2011-2019 Aaron Myles Landwehr
 
-## Info
-  * This script can be used to stylize your console prompt. Currently there
+## About
+Prompt Colorizer is a set of small scripts that implement four different styles of colored prompts for a number of different shells. Each style displays session information including: username, hostname, current directory (short and long), date, time, and git repository information (the latter is for bash/zsh/fish only and only with git-core installed). Click on the image to the right to see samples of the four styles. The idea of this set of scripts is to have an easy to set up and decent prompt without putting in a lot of effort to configure it on multiple systems with differing default shells.
+
+## Details
+  * These scripst can be used to stylize your console prompt. Currently there
     are 4 different styles to choose from.
 
   * It is designed in such a way that it works with a many different shell
