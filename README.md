@@ -1,7 +1,9 @@
-prompt colorizer script
-Copyright (c) 2011-2014 Aaron Myles Landwehr
+# prompt_colorizer
 
-Info:
+Copyright (c) 2011-2019 Aaron Myles Landwehr
+
+Info
+-
   * This script can be used to stylize your console prompt. Currently there
     are 4 different styles to choose from.
 
@@ -19,23 +21,31 @@ Info:
     * zsh
     * fish
 
-Installation:
-  1.
-      Move the prompt_colorizer directory into your home directory.
+Installation
+-
 
-  2.
-      Add the following line to your configuration file:
-        source ~/prompt_colorizer/frontend.sh N
+1. Clone:
+```
+cd ~
+git clone git@github.com:snaphat/prompt_colorizer.git .prompt_colorizer
+```
 
-      * where N is 0, 1, 2, or 3 designating which style to use.
+2. Add the following line to your configuration file where N is 0, 1, 2, or 3 designating which style to use.
+```
+source ~/.prompt_colorizer/frontend.sh N
+```
+Configuration file names by shell:
 
-      * Configuration file names by shell:
-              bash: .bashrc
-              tcsh: .cshrc
-              zsh:  .zshrc
-              ksh:  .kshrc
-              fish: .config/fish/config.fish
+| Shell | Config Location          |
+| ----- | ------------------------ |
+| bash  | .bashrc                  |
+| tcsh  | .cshrc                   |
+| zsh   | .zshrc                   |
+| ksh   | .kshrc                   |
+| fish  | .config/fish/config.fish |
 
-  3. (only for fish)
-      * If you are using the fish shell, run the following command once:
-          fish -c "function source; . \$argv; return; end; funcsave source;"
+
+3. Only for fish shell, run the following command once:
+```
+fish -c "function source; . \$argv; return; end; funcsave source;"
+```
