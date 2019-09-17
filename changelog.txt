@@ -1,3 +1,5 @@
+September 2019:
+    * Updated git-prompt.sh to version from the git distribution.
 February 2016:
     * Add support for Windows with GOW. 
 June 2014:
