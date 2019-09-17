@@ -1,0 +1,25 @@
+June 2014:
+    * Remove path for shell names (fix via Jose Manuel Monsalve Diaz). 
+November 2013:
+    * Turn off zsh shell themes when running; otherwise prompt_colorizer styles won't apply.
+    * Force terminate on unknown shell failure for cleaner failures.
+May 2013:
+    * Fixed fish git prompt support to work when not within a branch.
+April 2013:
+    * Now supports zsh, ksh (pdksh, mksh, ...), and fish shells.
+    * Unsupported message no longer errors for unsupported shells.
+    * Hint message is now only shown as an error.
+    * tcsh now shows the trailing directory for style 2.
+    * bash/zsh git prompt support now taken from the git/contribs repository.
+    * Added git prompt support for fish.
+    * Changed Style 1 slightly.
+    * Added a new style (style 3).
+March 2012:
+    * Added support for new git bash completion locations (e.g. /usr/share/bash-completion/completions/git).
+    * Fixed errors for servers with misconfigured bash completion (now the script sources the completion itself).
+June 2011:
+    * Added another prompt style.
+    * Added git repository display for bash style prompts.
+    * Added a third style.
+Feburary 2011:
+    * Initial creation.
