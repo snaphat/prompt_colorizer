@@ -1,3 +1,5 @@
+February 2016:
+    * Add support for Windows with GOW. 
 June 2014:
     * Remove path for shell names (fix via Jose Manuel Monsalve Diaz). 
 November 2013:

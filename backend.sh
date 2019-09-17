@@ -1,16 +1,21 @@
 # prompt colorizer backend script.
-# Copyright (c) 2011-2014 Aaron Myles Landwehr
+# Copyright (c) 2011-2016 Aaron Myles Landwehr
 # Supports the following shells: bash, tcsh, zsh, ksh, and fish (including variants).
 
 #Default style
 DEFAULT_STYLE=1
 
 TEMP_FILE=$1                          #Grab temp file to source in caller shell.
+PLATFORM=`uname`
 CHOSEN_STYLE=$2                       #Chosen style.
 CALLER_SHELL=${3##-}                  #Grab caller shell arg0; remove '-' if prefixed.
 CALLER_SHELL=${CALLER_SHELL##*/}      #Grab the basename in case of a path being attached to the shell name. E.g. /bin/bash.
-CALLER_SHELL_PS=`ps -ocomm= -p $PPID` #Grab the parent process shell.
-CALLER_SHELL_PS=${CALLER_SHELL_PS##-} #Remove '-' if prefixed.
+if [[ ${PLATFORM} == "windows32" ]]; then #emulate 'ps' command in windows. Needs GOW or equivalent.
+    CALLER_SHELL_PS=`tasklist -fi "PID eq $PPID" | grep $PPID | tr -s ' ' | cut -d '.' -f1`
+else
+    CALLER_SHELL_PS=`ps -ocomm= -p $PPID` #Grab the parent process shell.
+    CALLER_SHELL_PS=${CALLER_SHELL_PS##-} #Remove '-' if prefixed.
+fi
 
 #Detect whether the frontend was called in bash or tcsh (note: backend is always called using bash)
 if [[ ${CALLER_SHELL_PS} == *bash* ]]; then
@@ -28,7 +33,7 @@ if [[ ${CALLER_SHELL_PS} == *bash* ]]; then
 
     #git show branch in prompt for bash.
     GIT='`__git_ps1`'
-    PREFIX_TEXT="source ~/prompt_colorizer/git-prompt.sh"
+    PREFIX_TEXT="source ~/.prompt_colorizer/git-prompt.sh"
 elif [[ ${CALLER_SHELL_PS} == *zsh* ]]; then
     #zsh
     STRPFX="\$'"; STRSFX="'"                #Prefix & suffix of prompt string.
@@ -44,7 +49,7 @@ elif [[ ${CALLER_SHELL_PS} == *zsh* ]]; then
 
     #git show branch in prompt for zsh.
     GIT='`__git_ps1`'
-    PREFIX_TEXT='source ~/prompt_colorizer/git-prompt.sh; prompt off; setopt prompt_subst'
+    PREFIX_TEXT='source ~/.prompt_colorizer/git-prompt.sh; prompt off; setopt prompt_subst'
 
     #zsh fixes.
     CALLER_SHELL=${CALLER_SHELL_PS} #caller shell is always the scriptname for zsh.
@@ -100,7 +105,7 @@ elif [[ ${CALLER_SHELL_PS} == *fish* ]]; then
 
     #fish fixes.
     CHOSEN_STYLE=$4 #Fish uses a special $argv variable which we passed as bash arg $4 and beyond.
-    CALLER_SHELL=${CALLER_SHELL_PS} #caller shell doesn't exist for fish abd a script can only be sourced anyway.
+    CALLER_SHELL=${CALLER_SHELL_PS} #caller shell doesn't exist for fish and a script can only be sourced anyway.
 else
     #unknown
     NOT_FOUND=1
@@ -127,7 +132,7 @@ UWHT="${ESC}[${BRIGHT};${FG_WHITE}m"
 URESET="${ESC}[${DULL};${FG_WHITE};${NULL}m"
 
 # Bright foreground text variables.
-BBlK="${BEGCMD}${UBLK}{ENDCMD}"
+BBlK="${BEGCMD}${UBLK}${ENDCMD}"
 BRED="${BEGCMD}${URED}${ENDCMD}"
 BGRN="${BEGCMD}${UGRN}${ENDCMD}"
 BYLW="${BEGCMD}${UYLW}${ENDCMD}"
@@ -147,7 +152,7 @@ if [[ $NOT_FOUND == 1 ]]; then
     printf "${BRED}Prompt Colorizer Warning${RESET}: Unknown shell (${CALLER_SHELL_PS}), cannot colorize prompt...\n"
     kill $PPID; #Fail.
 elif [[ ${CALLER_SHELL} != ${CALLER_SHELL_PS} ]]; then #Caller shell should match the process if sourced.
-    printf "Usage: ${UYLW}source${UCYN} ~/prompt_colorizer/frontend.sh ${UGRN}NUM${URESET}\n"
+    printf "Usage: ${UYLW}source${UCYN} ~/.prompt_colorizer/frontend.sh ${UGRN}NUM${URESET}\n"
     printf "       Where ${UGRN}NUM${URESET} indicates the prompt style.\n"
     printf "       Only ${UVLT}0${URESET}, ${UVLT}1${URESET}, and ${UVLT}2${URESET} are supported.\n"
     echo -E "" > ${TEMP_FILE}
