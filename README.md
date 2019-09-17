@@ -2,8 +2,7 @@
 
 Copyright (c) 2011-2019 Aaron Myles Landwehr
 
-Info
--
+## Info
   * This script can be used to stylize your console prompt. Currently there
     are 4 different styles to choose from.
 
@@ -21,20 +20,20 @@ Info
     * zsh
     * fish
 
-Installation
+## Installation
 -
 
-1. Clone:
+### Clone:
 ```
 cd ~
 git clone git@github.com:snaphat/prompt_colorizer.git .prompt_colorizer
 ```
 
-2. Add the following line to your configuration file where N is 0, 1, 2, or 3 designating which style to use.
+### Add the following line to your configuration file where N is 0, 1, 2, or 3 designating which style to use:
 ```
 source ~/.prompt_colorizer/frontend.sh N
 ```
-Configuration file names by shell:
+#### Configuration file names by shell:
 
 | Shell | Config Location          |
 | ----- | ------------------------ |
@@ -45,7 +44,7 @@ Configuration file names by shell:
 | fish  | .config/fish/config.fish |
 
 
-3. Only for fish shell, run the following command once:
+### Only for fish shell, run the following command once:
 ```
 fish -c "function source; . \$argv; return; end; funcsave source;"
 ```
