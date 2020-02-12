@@ -32,7 +32,8 @@ if [[ ${CALLER_SHELL_PS} == *bash* ]]; then
     TIME="\@"                               #Time.
 
     #git show branch in prompt for bash.
-    GIT='`__git_ps1`'
+    GITHASH='`if [ ! -z "\\`__gitdir\\`" ]; then printf "("; git describe --abbrev --always --dirty=+ | tr -d "\n"; printf ")"; fi`'
+    GIT="\`__git_ps1\` ${GITHASH}"
     PREFIX_TEXT="source ~/.prompt_colorizer/git-prompt.sh"
 elif [[ ${CALLER_SHELL_PS} == *zsh* ]]; then
     #zsh
@@ -48,7 +49,8 @@ elif [[ ${CALLER_SHELL_PS} == *zsh* ]]; then
     TIME="%D{%r}"                           #Time.
 
     #git show branch in prompt for zsh.
-    GIT='`__git_ps1`'
+    GITHASH='`if [ ! -z "\\`__gitdir\\`" ]; then printf "("; git describe --abbrev --always --dirty=+ | tr -d "\n"; printf ")"; fi`'
+    GIT="\`__git_ps1\` ${GITHASH}"
     PREFIX_TEXT='source ~/.prompt_colorizer/git-prompt.sh; prompt off; setopt prompt_subst'
 
     #zsh fixes.
