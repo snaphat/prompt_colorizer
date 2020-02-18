@@ -32,7 +32,7 @@ if [[ ${CALLER_SHELL_PS} == *bash* ]]; then
     TIME="\@"                               #Time.
 
     #git show branch in prompt for bash.
-    GITHASH='`if [ "\\`git rev-parse --is-inside-work-tree 2>/dev/null\\`" = "true" ]; then printf "("; git describe --abbrev --always --dirty=+ | tr -d "\n"; printf ")"; fi`'
+    GITHASH='`if [ "\\`git rev-parse --is-inside-work-tree 2>/dev/null\\`" = "true" ]; then printf "("; git describe --long --tags --always --dirty=+ | tr -d "\n"; printf ")"; fi`'
     GIT="\`__git_ps1\` ${GITHASH}"
     PREFIX_TEXT="source ~/.prompt_colorizer/git-prompt.sh"
 elif [[ ${CALLER_SHELL_PS} == *zsh* ]]; then
@@ -49,7 +49,7 @@ elif [[ ${CALLER_SHELL_PS} == *zsh* ]]; then
     TIME="%D{%r}"                           #Time.
 
     #git show branch in prompt for zsh.
-    GITHASH='`if [ "\\`git rev-parse --is-inside-work-tree 2>/dev/null\\`" = "true" ]; then printf "("; git describe --abbrev --always --dirty=+ | tr -d "\n"; printf ")"; fi`'
+    GITHASH='`if [ "\\`git rev-parse --is-inside-work-tree 2>/dev/null\\`" = "true" ]; then printf "("; git describe --long --tags --always --dirty=+ | tr -d "\n"; printf ")"; fi`'
     GIT="\`__git_ps1\` ${GITHASH}"
     PREFIX_TEXT='source ~/.prompt_colorizer/git-prompt.sh; prompt off; setopt prompt_subst'
 
