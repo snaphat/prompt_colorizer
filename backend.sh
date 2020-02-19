@@ -51,7 +51,7 @@ elif [[ ${CALLER_SHELL_PS} == *zsh* ]]; then
     #git show branch in prompt for zsh.
     GITHASH='`if [ "\\`git rev-parse --is-inside-work-tree 2>/dev/null\\`" = "true" ]; then printf "("; git describe --long --tags --always --dirty=+ | tr -d "\n"; printf ")"; fi`'
     GIT="\`__git_ps1\` ${GITHASH}"
-    PREFIX_TEXT='source ~/.prompt_colorizer/git-prompt.sh; prompt off; setopt prompt_subst'
+    PREFIX_TEXT='source ~/.prompt_colorizer/git-prompt.sh; prompt off 2>/dev/null; setopt prompt_subst'
 
     #zsh fixes.
     CALLER_SHELL=${CALLER_SHELL_PS} #caller shell is always the scriptname for zsh.
