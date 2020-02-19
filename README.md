@@ -31,6 +31,8 @@ Prompt Colorizer is a set of small scripts that implement four different styles 
 ```
 cd ~
 git clone git@github.com:snaphat/prompt_colorizer.git .prompt_colorizer
+or
+git clone https://github.com/snaphat/prompt_colorizer.git .prompt_colorizer
 ```
 
 ### Add the following line to your configuration file where N is 0, 1, 2, or 3 designating which style to use:
