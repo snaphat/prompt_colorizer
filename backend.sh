@@ -16,6 +16,7 @@ else
     CALLER_SHELL_PS=`ps -ocomm= -p $PPID` #Grab the parent process shell.
     CALLER_SHELL_PS=${CALLER_SHELL_PS##-} #Remove '-' if prefixed.
 fi
+CALLER_SHELL_PS=${CALLER_SHELL_PS##*/} #Grab the basename in case of full path (e.g. /bin/bash)
 
 #Detect whether the frontend was called in bash or tcsh (note: backend is always called using bash)
 if [[ ${CALLER_SHELL_PS} == *bash* ]]; then
